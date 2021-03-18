@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import "./App.css";
+import Screen1 from "./components/screen1";
+import Screen2 from "./components/screen2";
+import { PlayerContext, PlayerContextProvider } from "./context";
+import { Container, Typography, CssBaseline } from "@material-ui/core";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const context = useContext(PlayerContext);
+	console.log(context);
+
+	return (
+		<PlayerContextProvider>
+			<Container component='main' fixed>
+				<CssBaseline />
+				<Typography component='h1' variant='h3'>
+					Who pays the Bill ?
+				</Typography>
+				{context.screens === 1 ? <Screen1 /> : <Screen2 />}
+			</Container>
+		</PlayerContextProvider>
+	);
+};
 
 export default App;
