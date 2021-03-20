@@ -1,5 +1,6 @@
 .App {
     text-align: center;
+    margin: 300px;
 }
 
 .App-logo {
@@ -38,6 +39,7 @@
 }
 
 .error {
+    display: block;
     color: red;
 }
 

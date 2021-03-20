@@ -7,17 +7,20 @@ import { Container, Typography, CssBaseline } from "@material-ui/core";
 
 const App = () => {
 	const context = useContext(PlayerContext);
-	console.log(context);
+	console.log("context", context);
+	console.log("context.state", context.state);
 
 	return (
 		<PlayerContextProvider>
-			<Container component='main' fixed>
-				<CssBaseline />
-				<Typography component='h1' variant='h3'>
-					Who pays the Bill ?
-				</Typography>
-				{context.screens === 1 ? <Screen1 /> : <Screen2 />}
-			</Container>
+			<div className='App'>
+				<Container component='main' fixed>
+					<CssBaseline />
+					<Typography component='h1' variant='h3'>
+						Who pays the Bill ?
+					</Typography>
+					{context.state.screens === 1 ? <Screen1 /> : <Screen2 />}
+				</Container>
+			</div>
 		</PlayerContextProvider>
 	);
 };
