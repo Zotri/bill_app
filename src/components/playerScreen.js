@@ -85,7 +85,7 @@ const Screen1 = () => {
 								fullWidth
 								disabled={!props.isValid || !props.dirty}
 								variant='contained'
-								color='primary'>
+								color='secondary'>
 								Add player
 							</Button>
 						</Form>
@@ -109,6 +109,16 @@ const Screen1 = () => {
 										</li>
 									))}
 								</List>
+								<div>
+									<Button
+										className={classes.next}
+										type='submit'
+										size='large'
+										variant='contained'
+										color='primary'>
+										NEXT
+									</Button>
+								</div>
 							</>
 						) : null}
 					</>

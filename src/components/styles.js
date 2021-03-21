@@ -19,6 +19,14 @@ const useStyles = makeStyles((theme) => ({
 	submit: {
 		margin: theme.spacing(3, 0, 2)
 	},
+	next: {
+		margin: theme.spacing(3, 0, 2),
+		display: "flex",
+		justifyContent: "flex-end",
+		position: "absolute",
+		top: "80%",
+		right: "23%"
+	},
 	root: {
 		width: "100%",
 		maxWidth: 360,
