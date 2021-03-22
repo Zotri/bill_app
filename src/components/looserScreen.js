@@ -1,14 +1,7 @@
 import React, { useContext } from "react";
 import { PlayerContext } from "../context";
 import useStyles from "./styles";
-import {
-	TextField,
-	Button,
-	List,
-	ListItem,
-	ListItemText,
-	ListItemIcon
-} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 const LooserScreen = () => {
 	const classes = useStyles();
