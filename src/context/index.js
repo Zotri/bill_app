@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PlayerContext = React.createContext();
 
@@ -72,17 +74,64 @@ class PlayerContextProvider extends Component {
 		return;
 	};
 
+	generateLooser = () => {
+		const { players } = this.state;
+		let result = players[Math.floor(Math.random() * players.length)];
+		console.log("result", result);
+		this.setState({
+			result: result.name
+		});
+	};
+
+	nextHandler = () => {
+		// check if the user has the min amount of players, then allows screens to get the value 2,
+		// if not then show the taost (toastify- react lib)
+		const { players } = this.state;
+		if (players.length < 2) {
+			toast.error("You need to add one more player !", {
+				position: toast.POSITION.TOP_LEFT,
+				autoClose: 3000
+			});
+		} else {
+			this.setState(
+				{
+					screens: 2
+				},
+				() => {
+					setTimeout(() => {
+						this.generateLooser();
+					}, 1500);
+				}
+			);
+		}
+	};
+
+	resetGameHandler = () => {
+		this.setState({
+			screens: 1,
+			players: [],
+			result: "",
+			error: ""
+		});
+	};
+
 	render() {
 		return (
-			<PlayerContext.Provider
-				value={{
-					state: this.state,
-					addPlayer: this.addPlayerHandler,
-					updateError: this.updateErrorField,
-					deletePlayer: this.removePlayerHandler
-				}}>
-				{this.props.children}
-			</PlayerContext.Provider>
+			<>
+				<PlayerContext.Provider
+					value={{
+						state: this.state,
+						addPlayer: this.addPlayerHandler,
+						updateError: this.updateErrorField,
+						deletePlayer: this.removePlayerHandler,
+						getLooser: this.generateLooser,
+						next: this.nextHandler,
+						resetGame: this.resetGameHandler
+					}}>
+					{this.props.children}
+				</PlayerContext.Provider>
+				<ToastContainer />
+			</>
 		);
 	}
 }

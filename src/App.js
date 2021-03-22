@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import "./App.css";
 import PlayerScreen from "./components/playerScreen";
-import Screen2 from "./components/screen2";
-import { PlayerContext, PlayerContextProvider } from "./context";
+import LooserScreen from "./components/looserScreen";
+import { PlayerContext } from "./context";
 import { Container, Typography, CssBaseline } from "@material-ui/core";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
 	const context = useContext(PlayerContext);
@@ -11,17 +12,15 @@ const App = () => {
 	console.log("context.state", context.state);
 
 	return (
-		<PlayerContextProvider>
-			<div className='App'>
-				<Container component='main' fixed>
-					<CssBaseline />
-					<Typography component='h1' variant='h3'>
-						Who pays the Bill ?
-					</Typography>
-					{context.state.screens === 1 ? <PlayerScreen /> : <Screen2 />}
-				</Container>
-			</div>
-		</PlayerContextProvider>
+		<div className='App'>
+			<Container component='main' fixed>
+				<CssBaseline />
+				<Typography component='h1' variant='h3'>
+					Who pays the Bill ?
+				</Typography>
+				{context.state.screens === 1 ? <PlayerScreen /> : <LooserScreen />}
+			</Container>
+		</div>
 	);
 };
 

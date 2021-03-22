@@ -1,26 +1,19 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import { PlayerContext } from "../context";
 import useStyles from "./styles";
 import {
 	TextField,
-	Checkbox,
-	Typography,
 	Button,
 	List,
 	ListItem,
 	ListItemText,
-	ListItemSecondaryAction,
-	Grid,
-	Box,
-	FormControlLabel,
-	Link,
 	ListItemIcon
 } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import * as Yup from "yup";
 
-const Screen1 = () => {
+const PlayerScreen = () => {
 	const classes = useStyles();
 	const textInputRef = useRef();
 	const context = useContext(PlayerContext);
@@ -80,6 +73,7 @@ const Screen1 = () => {
 								{console.log("props formik", props)}
 							</div>
 							<Button
+								id='add-btn'
 								className={classes.submit}
 								type='submit'
 								fullWidth
@@ -111,11 +105,13 @@ const Screen1 = () => {
 								</List>
 								<div>
 									<Button
+										id='next-btn'
 										className={classes.next}
 										type='submit'
 										size='large'
 										variant='contained'
-										color='primary'>
+										color='primary'
+										onClick={() => context.next()}>
 										NEXT
 									</Button>
 								</div>
@@ -128,4 +124,4 @@ const Screen1 = () => {
 	);
 };
 
-export default Screen1;
+export default PlayerScreen;
